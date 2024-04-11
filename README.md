@@ -1,3 +1,3 @@
-KatLib
+# KatLib
 
 My small sfml library
