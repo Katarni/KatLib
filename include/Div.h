@@ -12,14 +12,15 @@ namespace kat {
    public:
     Div(): x_(0), y_(0),
            width_(0), height_(0),
-           parent_(nullptr), border_radius_(0), background_color_(sf::Color::White) {}
+           parent_(nullptr), border_radius_(0), background_color_(sf::Color::White),
+           need_render_(true) {}
 
     Div(float x, float y,
         float width, float height,
         sf::RenderWindow* parent): x_(x), y_(y),
                                    width_(width), height_(height),
                                    parent_(parent), background_color_(sf::Color::White),
-                                   border_radius_(0){}
+                                   border_radius_(0), need_render_(true) {}
 
     Div& operator=(const Div& div) = default;
 
@@ -57,15 +58,29 @@ namespace kat {
       x_ += d;
     }
 
+    bool needRender() const {
+      return need_render_;
+    }
+
+    void setNeedRender(bool need_render) {
+      need_render_ = need_render;
+    }
+
+    void switchNeedRender() {
+      need_render_ = !need_render_;
+    }
+
    private:
     sf::Color background_color_;
     float x_, y_;
     float width_, height_;
     sf::RenderWindow* parent_;
     float border_radius_;
+    float need_render_;
   };
 
   void Div::render() {
+    if (!need_render_) return;
     sf::RectangleShape hor_rect;
     hor_rect.setPosition(x_, y_ + border_radius_);
     hor_rect.setSize({width_, height_ - 2*border_radius_});

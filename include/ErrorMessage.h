@@ -10,19 +10,17 @@
 namespace kat {
   class ErrorMessage : public Button {
    public:
-    ErrorMessage(): Button(), close_btn_(Button()), need_render_(false) {}
+    ErrorMessage(): Button(), close_btn_(Button()) {}
     ErrorMessage(float x, float y,
                  float width, float height,
                  const std::string &data, const sf::Font &font,
                  sf::RenderWindow *parent): Button(x, y, width, height, data, font, parent),
-                                            close_btn_(Button(x + 7, y + 7, 26, 26, "x", font, parent)),
-                                            need_render_(false) {
+                                            close_btn_(Button(x + 7, y + 7, 26, 26, "x", font, parent)) {
       close_btn_.setBorderRadius(13);
       close_btn_.setFontSize(20);
     }
 
     void render() override {
-      if (!need_render_) return;
       auto size = normalizeSize(getData(), getPaddings(), getFontSize(), 1.6f);
       auto old_width = getWidth(), old_height = getHeight();
       setWidth(std::max(old_width, size.first));
@@ -66,21 +64,8 @@ namespace kat {
       close_btn_.setBackgroundColor(background);
     }
 
-    bool needRender() const {
-      return need_render_;
-    }
-
-    void setNeedRender(bool need_render) {
-      need_render_ = need_render;
-    }
-
-    void switchNeedRender() {
-      need_render_ = !need_render_;
-    }
-
    private:
     Button close_btn_;
-    bool need_render_;
   };
 }
 
