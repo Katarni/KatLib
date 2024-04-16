@@ -131,3 +131,11 @@ std::pair<float, float> normalizeSize(const std::string& data, const std::vector
   size.second = float(params.second*font_size) + (float)paddings[1] + (float)paddings[3];
   return size;
 }
+
+bool isNumber(const std::string& str) {
+  for (char c : str) {
+    if (c < '0' || '9' < c) return false;
+  }
+  return true;
+}
+
