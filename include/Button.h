@@ -30,6 +30,13 @@ namespace kat {
                    (getHeight() - (float)text_params.second*(float)getFontSize()) / 2 -
                    (float)getFontSize()/5;
 
+    sf::Text text;
+    text.setFont(getFont());
+    text.setFillColor(getColor());
+    text.setCharacterSize(getFontSize());
+    text.setString(getData());
+    text.setPosition(text_x, text_y);
+
     Div::render();
     getParent()->draw(text);
   }
