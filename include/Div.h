@@ -48,7 +48,7 @@ namespace kat {
     const float &getBorderRadius() const;
     void setBorderRadius(float border_radius);
 
-    bool isHovered(float x, float y) const;
+    inline bool isHovered(float x, float y) const;
 
     void moveY(float d) {
       y_ += d;
@@ -69,6 +69,8 @@ namespace kat {
     void switchNeedRender() {
       need_render_ = !need_render_;
     }
+
+    inline bool isHoverHorizontalPart(float part, float x, float y);
 
    private:
     sf::Color background_color_;
@@ -207,6 +209,48 @@ namespace kat {
     if ((x - x_ - width_ + border_radius_)*(x - x_ - width_ + border_radius_) +
         (y - y_ + border_radius_ - height_)*(y - y_ + border_radius_ - height_) <=
         border_radius_*border_radius_) {
+      return true;
+    }
+
+    return false;
+  }
+
+  bool Div::isHoverHorizontalPart(float part, float x, float y) {
+    if (x >= x_ &&
+        y >= y_ + border_radius_ &&
+        x <= x_ + width_*part &&
+        y <= y_ + height_ - 2*border_radius_) {
+      return true;
+    }
+
+    if (x >= x_ + border_radius_ &&
+        y >= y_ &&
+        x <= x_ + width_*part - 2*border_radius_ &&
+        y <= y_ + height_) {
+      return true;
+    }
+
+    if ((x - x_ - border_radius_)*(x - x_ - border_radius_) +
+        (y - y_ - border_radius_)*(y - y_ - border_radius_) <= border_radius_*border_radius_ &&
+        x <= width_*part) {
+      return true;
+    }
+
+    if ((x - x_ - width_ + border_radius_)*(x - x_ - width_ + border_radius_) +
+        (y - y_ - border_radius_)*(y - y_ - border_radius_) <= border_radius_*border_radius_ &&
+        x <= width_*part) {
+      return true;
+    }
+
+    if ((x - x_ - border_radius_)*(x - x_ - border_radius_) +
+        (y - y_ + border_radius_ - height_)*(y - y_ + border_radius_ - height_) <= border_radius_*border_radius_ &&
+        x <= width_*part) {
+      return true;
+    }
+
+    if ((x - x_ - width_ + border_radius_)*(x - x_ - width_ + border_radius_) +
+        (y - y_ + border_radius_ - height_)*(y - y_ + border_radius_ - height_) <= border_radius_*border_radius_ &&
+        x <= width_*part) {
       return true;
     }
 
