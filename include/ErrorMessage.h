@@ -22,6 +22,7 @@ namespace kat {
     }
 
     void render() override {
+      if (!need_render_) return;
       auto size = normalizeSize(getData(), getPaddings(), getFontSize(), 1.6f);
       auto old_width = getWidth(), old_height = getHeight();
       setWidth(std::max(old_width, size.first));
