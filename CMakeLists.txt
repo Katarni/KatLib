@@ -20,6 +20,7 @@ set_target_properties(katLib PROPERTIES PUBLIC_HEADER "include/DialogWin.h")
 set_target_properties(katLib PROPERTIES PUBLIC_HEADER "include/scroll-area/CheckBox.h")
 set_target_properties(katLib PROPERTIES PUBLIC_HEADER "include/scroll-area/ScrollTextInputs.h")
 set_target_properties(katLib PROPERTIES PUBLIC_HEADER "include/SelectedItem.h")
+set_target_properties(katLib PROPERTIES PUBLIC_HEADER "include/KatLib.h")
 
 
 install(TARGETS katLib
