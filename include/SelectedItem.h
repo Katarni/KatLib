@@ -43,6 +43,7 @@ namespace kat {
 
 
   void SelectedItem::render() {
+    if (!needRender()) return;
     auto text_params = getStringParams(getData());
     float text_x = (getWidth() - (float) text_params.first * (float) getFontSize() / 1.6f) / 2 + getX();
     float text_y = getY() +

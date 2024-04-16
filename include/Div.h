@@ -76,7 +76,7 @@ namespace kat {
     float width_, height_;
     sf::RenderWindow* parent_;
     float border_radius_;
-    float need_render_;
+    bool need_render_;
   };
 
   void Div::render() {

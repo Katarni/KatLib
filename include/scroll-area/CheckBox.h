@@ -51,6 +51,7 @@ namespace kat {
 
 
   void CheckBox::render() {
+    if (!needRender()) return;
     Div::render();
 
     for (auto & elm : getElms()) {

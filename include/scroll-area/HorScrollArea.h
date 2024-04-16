@@ -86,6 +86,7 @@ namespace kat {
     }
 
     void render() override {
+      if (!needRender()) return;
       Div::render();
 
       for (auto & elm : elms_) {

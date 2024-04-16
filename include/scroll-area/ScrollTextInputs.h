@@ -96,6 +96,7 @@ namespace kat {
   }
 
   void ScrollTextInputs::render() {
+    if (!needRender()) return;
     CheckBox::render();
 
     for (auto & input : inputs_) {
