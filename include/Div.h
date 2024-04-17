@@ -20,7 +20,10 @@ namespace kat {
         sf::RenderWindow* parent): x_(x), y_(y),
                                    width_(width), height_(height),
                                    parent_(parent), background_color_(sf::Color::White),
-                                   border_radius_(0), need_render_(true) {}
+                                   border_radius_(0), need_render_(true) {
+      border_bold_ = 0;
+      border_color_ = sf::Color::Black;
+    }
 
     Div& operator=(const Div& div) = default;
 
@@ -70,7 +73,15 @@ namespace kat {
       need_render_ = !need_render_;
     }
 
-    inline bool isHoverHorizontalPart(float part, float x, float y);
+    inline bool isHoverHorizontalPart(float part, float x, float y) const;
+
+    float getBorderBold() const;
+
+    void setBorderBold(float borderBold);
+
+    const sf::Color &getBorderColor() const;
+
+    void setBorderColor(const sf::Color &borderColor);
 
    private:
     sf::Color background_color_;
@@ -79,36 +90,75 @@ namespace kat {
     sf::RenderWindow* parent_;
     float border_radius_;
     bool need_render_;
+
+    float border_bold_;
+    sf::Color border_color_;
   };
 
   void Div::render() {
     if (!need_render_) return;
     sf::RectangleShape hor_rect;
+    sf::RectangleShape ver_rect;
+    sf::CircleShape top_left_cir;
+    sf::CircleShape top_right_cir;
+    sf::CircleShape bottom_left_cir;
+    sf::CircleShape bottom_right_cir;
+    if (border_bold_ != 0) {
+      float border_x = x_ - border_bold_, border_y = y_ - border_bold_;
+      float border_height = height_ + 2*border_bold_, border_width = width_ + 2*border_bold_;
+
+      hor_rect.setPosition(border_x, border_y + border_radius_);
+      hor_rect.setSize({border_width, border_height - 2*border_radius_});
+      hor_rect.setFillColor(border_color_);
+
+      ver_rect.setPosition(border_x + border_radius_, border_y);
+      ver_rect.setSize({border_width - 2*border_radius_, border_height});
+      ver_rect.setFillColor(border_color_);
+
+
+      top_left_cir.setRadius(border_radius_);
+      top_left_cir.setPosition(border_x, border_y);
+      top_left_cir.setFillColor(border_color_);
+      top_right_cir.setRadius(border_radius_);
+      top_right_cir.setPosition(border_x + border_width - 2*border_radius_, border_y);
+      top_right_cir.setFillColor(border_color_);
+
+
+      bottom_left_cir.setRadius(border_radius_);
+      bottom_left_cir.setPosition(border_x, border_y + border_height - 2*border_radius_);
+      bottom_left_cir.setFillColor(border_color_);
+      bottom_right_cir.setRadius(border_radius_);
+      bottom_right_cir.setPosition(border_x + border_width - 2*border_radius_, border_y + border_height - 2*border_radius_);
+      bottom_right_cir.setFillColor(border_color_);
+
+      parent_->draw(hor_rect);
+      parent_->draw(ver_rect);
+      parent_->draw(top_left_cir);
+      parent_->draw(top_right_cir);
+      parent_->draw(bottom_right_cir);
+      parent_->draw(bottom_left_cir);
+    }
+
     hor_rect.setPosition(x_, y_ + border_radius_);
     hor_rect.setSize({width_, height_ - 2*border_radius_});
     hor_rect.setFillColor(background_color_);
 
-    sf::RectangleShape ver_rect;
     ver_rect.setPosition(x_ + border_radius_, y_);
     ver_rect.setSize({width_ - 2*border_radius_, height_});
     ver_rect.setFillColor(background_color_);
 
-    sf::CircleShape top_left_cir;
+
     top_left_cir.setRadius(border_radius_);
     top_left_cir.setPosition(x_, y_);
     top_left_cir.setFillColor(background_color_);
-
-    sf::CircleShape top_right_cir;
     top_right_cir.setRadius(border_radius_);
     top_right_cir.setPosition(x_ + width_ - 2*border_radius_, y_);
     top_right_cir.setFillColor(background_color_);
 
-    sf::CircleShape bottom_left_cir;
+
     bottom_left_cir.setRadius(border_radius_);
     bottom_left_cir.setPosition(x_, y_ + height_ - 2*border_radius_);
     bottom_left_cir.setFillColor(background_color_);
-
-    sf::CircleShape bottom_right_cir;
     bottom_right_cir.setRadius(border_radius_);
     bottom_right_cir.setPosition(x_ + width_ - 2*border_radius_, y_ + height_ - 2*border_radius_);
     bottom_right_cir.setFillColor(background_color_);
@@ -173,49 +223,11 @@ namespace kat {
     border_radius_ = border_radius;
   }
 
-  bool Div::isHovered(float x, float y) const {
-    if (x >= x_ &&
-        y >= y_ + border_radius_ &&
-        x <= x_ + width_ &&
-        y <= y_ + height_ - 2*border_radius_) {
-      return true;
-    }
-
-    if (x >= x_ + border_radius_ &&
-        y >= y_ &&
-        x <= x_ + width_ - 2*border_radius_ &&
-        y <= y_ + height_) {
-      return true;
-    }
-
-    if ((x - x_ - border_radius_)*(x - x_ - border_radius_) +
-        (y - y_ - border_radius_)*(y - y_ - border_radius_) <=
-        border_radius_*border_radius_) {
-      return true;
-    }
-
-    if ((x - x_ - width_ + border_radius_)*(x - x_ - width_ + border_radius_) +
-        (y - y_ - border_radius_)*(y - y_ - border_radius_) <=
-        border_radius_*border_radius_) {
-      return true;
-    }
-
-    if ((x - x_ - border_radius_)*(x - x_ - border_radius_) +
-        (y - y_ + border_radius_ - height_)*(y - y_ + border_radius_ - height_) <=
-        border_radius_*border_radius_) {
-      return true;
-    }
-
-    if ((x - x_ - width_ + border_radius_)*(x - x_ - width_ + border_radius_) +
-        (y - y_ + border_radius_ - height_)*(y - y_ + border_radius_ - height_) <=
-        border_radius_*border_radius_) {
-      return true;
-    }
-
-    return false;
+  inline bool Div::isHovered(float x, float y) const {
+    return isHoverHorizontalPart(1, x, y);
   }
 
-  bool Div::isHoverHorizontalPart(float part, float x, float y) {
+  inline bool Div::isHoverHorizontalPart(float part, float x, float y) const {
     if (x >= x_ &&
         y >= y_ + border_radius_ &&
         x <= x_ + width_*part &&
@@ -255,5 +267,22 @@ namespace kat {
     }
 
     return false;
+  }
+
+  float Div::getBorderBold() const {
+    return border_bold_;
+  }
+
+  void Div::setBorderBold(float borderBold) {
+    if (borderBold < 0) throw std::runtime_error("border bold less than zero");
+    border_bold_ = borderBold;
+  }
+
+  const sf::Color &Div::getBorderColor() const {
+    return border_color_;
+  }
+
+  void Div::setBorderColor(const sf::Color &borderColor) {
+    border_color_ = borderColor;
   }
 }
