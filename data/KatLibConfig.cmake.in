@@ -1,0 +1,4 @@
+@PACKAGE_INIT@
+
+include(@CMAKE_INSTALL_PREFIX@/cmake/KatLibExport.cmake)
+set_and_check(KatLib_DIR @CMAKE_INSTALL_PREFIX@)
