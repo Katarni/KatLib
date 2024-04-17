@@ -4,19 +4,19 @@
 
 #pragma once
 
-#include "VerCheckBox.h"
+#include "VerVerCheckBox.h"
 #include "../TextInput.h"
 
 
 namespace kat {
-  class ScrollTextInputs : public CheckBox {
+  class ScrollTextInputs : public VerCheckBox {
    public:
-    ScrollTextInputs() : CheckBox() {}
+    ScrollTextInputs() : VerCheckBox() {}
     ScrollTextInputs(float x, float y,
              float width, float height,
              sf::RenderWindow* parent,
              float elm_width, float input_width, float elm_height,
-             const sf::Font& font) : CheckBox(x, y, width, height, parent, elm_width, elm_height, font),
+             const sf::Font& font) : VerCheckBox(x, y, width, height, parent, elm_width, elm_height, font),
                                      input_width_(input_width) {
       setButtonWidth(input_width + elm_width);
     }
@@ -97,7 +97,7 @@ namespace kat {
 
   void ScrollTextInputs::render() {
     if (!needRender()) return;
-    CheckBox::render();
+    VerCheckBox::render();
 
     for (auto & input : inputs_) {
       if (input.getY() >= getY() + getPaddings()[1]
