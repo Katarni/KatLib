@@ -104,6 +104,7 @@ namespace kat {
     sf::CircleShape bottom_left_cir;
     sf::CircleShape bottom_right_cir;
     if (border_bold_ != 0) {
+      // draw border
       float border_x = x_ - border_bold_, border_y = y_ - border_bold_;
       float border_height = height_ + 2*border_bold_, border_width = width_ + 2*border_bold_;
 
@@ -115,14 +116,12 @@ namespace kat {
       ver_rect.setSize({border_width - 2*border_radius_, border_height});
       ver_rect.setFillColor(border_color_);
 
-
       top_left_cir.setRadius(border_radius_);
       top_left_cir.setPosition(border_x, border_y);
       top_left_cir.setFillColor(border_color_);
       top_right_cir.setRadius(border_radius_);
       top_right_cir.setPosition(border_x + border_width - 2*border_radius_, border_y);
       top_right_cir.setFillColor(border_color_);
-
 
       bottom_left_cir.setRadius(border_radius_);
       bottom_left_cir.setPosition(border_x, border_y + border_height - 2*border_radius_);
@@ -139,6 +138,7 @@ namespace kat {
       parent_->draw(bottom_left_cir);
     }
 
+    // draw main part
     hor_rect.setPosition(x_, y_ + border_radius_);
     hor_rect.setSize({width_, height_ - 2*border_radius_});
     hor_rect.setFillColor(background_color_);
@@ -147,14 +147,12 @@ namespace kat {
     ver_rect.setSize({width_ - 2*border_radius_, height_});
     ver_rect.setFillColor(background_color_);
 
-
     top_left_cir.setRadius(border_radius_);
     top_left_cir.setPosition(x_, y_);
     top_left_cir.setFillColor(background_color_);
     top_right_cir.setRadius(border_radius_);
     top_right_cir.setPosition(x_ + width_ - 2*border_radius_, y_);
     top_right_cir.setFillColor(background_color_);
-
 
     bottom_left_cir.setRadius(border_radius_);
     bottom_left_cir.setPosition(x_, y_ + height_ - 2*border_radius_);
