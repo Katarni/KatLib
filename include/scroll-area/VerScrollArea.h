@@ -9,10 +9,10 @@
 
 
 namespace kat {
-  class HorScrollArea : public Div {
+  class VerScrollArea : public Div {
    public:
-    HorScrollArea() : Div(), elms_(std::vector<ScrollAreaElm>(0)) {}
-    HorScrollArea(float x, float y,
+    VerScrollArea() : Div(), elms_(std::vector<ScrollAreaElm>(0)) {}
+    VerScrollArea(float x, float y,
                   float width, float height,
                   sf::RenderWindow* parent,
                   float elm_width, float elm_height,

@@ -4,18 +4,18 @@
 
 #pragma once
 
-#include "scroll-area/HorScrollArea.h"
+#include "scroll-area/VerScrollArea.h"
 
 
 namespace kat {
-  class CheckBox : public HorScrollArea {
+  class VerCheckBox : public VerScrollArea {
    public:
-    CheckBox() : HorScrollArea(), accept_btn_(Button()) {}
-    CheckBox(float x, float y,
+    VerCheckBox() : VerScrollArea(), accept_btn_(Button()) {}
+    VerCheckBox(float x, float y,
              float width, float height,
              sf::RenderWindow* parent,
              float elm_width, float elm_height,
-             const sf::Font& font) : HorScrollArea(x, y, width, height, parent, elm_width, elm_height, font),
+             const sf::Font& font) : VerScrollArea(x, y, width, height, parent, elm_width, elm_height, font),
                                      accept_btn_(Button(x, y + height - elm_height,
                                                         elm_width, elm_height, "AC", font, parent)) {}
 
@@ -26,12 +26,12 @@ namespace kat {
     void moveTop() override;
 
     void setElmBorderRadius(float radius) override {
-      HorScrollArea::setElmBorderRadius(radius);
+      VerScrollArea::setElmBorderRadius(radius);
       accept_btn_.setBorderRadius(radius);
     }
 
     void setPaddings(const std::vector<float> &paddings) override {
-      HorScrollArea::setPaddings(paddings);
+      VerScrollArea::setPaddings(paddings);
       accept_btn_.moveX(paddings[0]);
       accept_btn_.moveY(-paddings[3]);
     }
@@ -50,7 +50,7 @@ namespace kat {
   };
 
 
-  void CheckBox::render() {
+  void VerCheckBox::render() {
     if (!needRender()) return;
     Div::render();
 
@@ -70,7 +70,7 @@ namespace kat {
     accept_btn_.render();
   }
 
-  int CheckBox::isPressed(float x, float y) {
+  int VerCheckBox::isPressed(float x, float y) {
     if (accept_btn_.isPressed(x, y)) return 2;
 
     int ret = 0;
@@ -89,7 +89,7 @@ namespace kat {
     return ret;
   }
 
-  void CheckBox::moveTop() {
+  void VerCheckBox::moveTop() {
     if (getElms().empty()) return;
     if (getElms().back().getY() + 2*getElms().back().getHeight() <=
         getY() + getHeight() - getPaddings()[3] - getElmsDivider()) return;
@@ -99,15 +99,15 @@ namespace kat {
     }
   }
 
-  Button &CheckBox::getAcceptBtn() {
+  Button &VerCheckBox::getAcceptBtn() {
     return accept_btn_;
   }
 
-  void CheckBox::setButtonWidth(float width) {
+  void VerCheckBox::setButtonWidth(float width) {
     accept_btn_.setWidth(width);
   }
 
-  void CheckBox::setButtonHeight(float height) {
+  void VerCheckBox::setButtonHeight(float height) {
     accept_btn_.setHeight(height);
   }
 }

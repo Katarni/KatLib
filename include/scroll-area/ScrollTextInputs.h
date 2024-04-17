@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "CheckBox.h"
+#include "VerCheckBox.h"
 #include "../TextInput.h"
 
 
