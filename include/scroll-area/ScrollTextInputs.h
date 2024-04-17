@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "VerVerCheckBox.h"
+#include "VerCheckBox.h"
 #include "../TextInput.h"
 
 
@@ -111,7 +111,7 @@ namespace kat {
 
   void ScrollTextInputs::clearElms() {
     inputs_.resize(0);
-    HorScrollArea::clearElms();
+    VerScrollArea::clearElms();
   }
 
   void ScrollTextInputs::moveCursorRight() {
