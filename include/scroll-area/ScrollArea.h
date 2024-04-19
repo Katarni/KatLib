@@ -1,0 +1,51 @@
+//
+// Created by Тимур Ахметзянов on 18.04.2024.
+//
+
+#pragma once
+
+#include "../Label.h"
+
+
+namespace kat {
+  class ScrollArea : public Div {
+   public:
+    ScrollArea() : Div(), elms_(std::vector<Label*>(0)) {}
+    ScrollArea(float x, float y,
+               float width, float height,
+               sf::RenderWindow* parent) : Div(x, y, width, height, parent), elms_(std::vector<Label*>(0)) {}
+    ~ScrollArea() {
+      for (auto & elm : elms_) {
+        delete elm;
+      }
+    }
+
+    void render() override {
+      if (!needRender()) return;
+
+      Div::render();
+      for (auto& elm : elms_) {
+        if (elm->getX() >= getX() && elm->getY() >= getY() &&
+            elm->getX() + elm->getWidth() <= getX() + getWidth() &&
+            elm->getY() + elm->getHeight() <= getY() + getHeight()) {
+          elm->render();
+        }
+      }
+    }
+
+    void moveX(float d) override {
+      for (auto& elm : elms_) {
+        elm->moveX(d);
+      }
+    }
+
+    void moveY(float d) override {
+      for (auto& elm : elms_) {
+        elm->moveY(d);
+      }
+    }
+
+   private:
+    std::vector<Label*> elms_;
+  };
+}

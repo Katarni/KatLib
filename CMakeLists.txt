@@ -3,7 +3,8 @@ project(KatLib VERSION 1.0.0)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 
-add_library(KatLib INTERFACE)
+add_library(KatLib INTERFACE
+        include/scroll-area/ScrollArea.h)
 target_include_directories(KatLib INTERFACE
         $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>)

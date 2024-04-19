@@ -53,11 +53,11 @@ namespace kat {
 
     inline bool isHovered(float x, float y) const;
 
-    void moveY(float d) {
+    virtual void moveY(float d) {
       y_ += d;
     }
 
-    void moveX(float d) {
+    virtual void moveX(float d) {
       x_ += d;
     }
 
