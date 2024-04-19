@@ -17,3 +17,4 @@
 #include "scroll-area/VerScrollArea.h"
 #include "scroll-area/ScrollAreaElm.h"
 #include "scroll-area/ScrollTextInputs.h"
+#include "scroll-area/ScrollArea.h"
