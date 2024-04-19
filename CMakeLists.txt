@@ -3,8 +3,7 @@ project(KatLib VERSION 1.0.0)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 
-add_library(KatLib INTERFACE
-        include/scroll-area/ScrollArea.h)
+add_library(KatLib INTERFACE)
 target_include_directories(KatLib INTERFACE
         $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>)
@@ -22,6 +21,7 @@ set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/scroll-area/VerCh
 set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/scroll-area/ScrollTextInputs.h")
 set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/SelectedItem.h")
 set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/KatLib.h")
+set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/scroll-area/ScrollArea.h")
 
 
 install(TARGETS KatLib
