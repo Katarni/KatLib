@@ -51,6 +51,7 @@ namespace kat {
       for (auto& i : elms_) {
         delete i;
       }
+      elms_.resize(0);
     }
 
    private:
