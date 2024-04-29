@@ -36,6 +36,10 @@ namespace kat {
       return selected_color_;
     }
 
+    void setIsSelected(bool isSelected);
+
+    bool isSelected() const;
+
    private:
     bool is_selected_;
     sf::Color selected_color_;
@@ -124,5 +128,13 @@ namespace kat {
     getParent()->draw(bottom_right_cir);
     getParent()->draw(bottom_left_cir);
     getParent()->draw(text);
+  }
+
+  void SelectedItem::setIsSelected(bool isSelected) {
+    is_selected_ = isSelected;
+  }
+
+  bool SelectedItem::isSelected() const {
+    return is_selected_;
   }
 }
