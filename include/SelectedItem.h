@@ -51,13 +51,50 @@ namespace kat {
                    (float) getFontSize() / 5;
 
     sf::Text text;
+    sf::RectangleShape hor_rect, ver_rect;
+    sf::CircleShape top_left_cir, top_right_cir;
+    sf::CircleShape bottom_left_cir, bottom_right_cir;
+    if (getBorderBold() != 0) {
+      // draw border
+      float border_x = getX() - getBorderBold(), border_y = getY() - getBorderBold();
+      float border_height = getHeight() + 2*getBorderBold(), border_width = getWidth() + 2*getBorderBold();
+
+      hor_rect.setPosition(border_x, border_y + getBorderRadius());
+      hor_rect.setSize({border_width, border_height - 2*getBorderRadius()});
+      hor_rect.setFillColor(getBorderColor());
+
+      ver_rect.setPosition(border_x + getBorderRadius(), border_y);
+      ver_rect.setSize({border_width - 2*getBorderRadius(), border_height});
+      ver_rect.setFillColor(getBorderColor());
+
+      top_left_cir.setRadius(getBorderRadius());
+      top_left_cir.setPosition(border_x, border_y);
+      top_left_cir.setFillColor(getBorderColor());
+      top_right_cir.setRadius(getBorderRadius());
+      top_right_cir.setPosition(border_x + border_width - 2*getBorderRadius(), border_y);
+      top_right_cir.setFillColor(getBorderColor());
+
+      bottom_left_cir.setRadius(getBorderRadius());
+      bottom_left_cir.setPosition(border_x, border_y + border_height - 2*getBorderRadius());
+      bottom_left_cir.setFillColor(getBorderColor());
+      bottom_right_cir.setRadius(getBorderRadius());
+      bottom_right_cir.setPosition(border_x + border_width - 2*getBorderRadius(), border_y + border_height - 2*getBorderRadius());
+      bottom_right_cir.setFillColor(getBorderColor());
+
+      getParent()->draw(hor_rect);
+      getParent()->draw(ver_rect);
+      getParent()->draw(top_left_cir);
+      getParent()->draw(top_right_cir);
+      getParent()->draw(bottom_right_cir);
+      getParent()->draw(bottom_left_cir);
+    }
+
     text.setFont(getFont());
     text.setFillColor(getColor());
     text.setCharacterSize(getFontSize());
     text.setString(getData());
     text.setPosition(text_x, text_y);
 
-    sf::RectangleShape hor_rect, ver_rect;
     hor_rect.setPosition(getX(), getY() + getBorderRadius());
     hor_rect.setSize({getWidth(), getHeight() - 2 * getBorderRadius()});
     hor_rect.setFillColor(is_selected_ ? selected_color_ : getBackgroundColor());
@@ -65,7 +102,6 @@ namespace kat {
     ver_rect.setSize({getWidth() - 2 * getBorderRadius(), getHeight()});
     ver_rect.setFillColor(is_selected_ ? selected_color_ : getBackgroundColor());
 
-    sf::CircleShape top_left_cir, top_right_cir;
     top_left_cir.setRadius(getBorderRadius());
     top_left_cir.setPosition(getX(), getY());
     top_left_cir.setFillColor(is_selected_ ? selected_color_ : getBackgroundColor());
@@ -73,7 +109,6 @@ namespace kat {
     top_right_cir.setPosition(getX() + getWidth() - 2 * getBorderRadius(), getY());
     top_right_cir.setFillColor(is_selected_ ? selected_color_ : getBackgroundColor());
 
-    sf::CircleShape bottom_left_cir, bottom_right_cir;
     bottom_left_cir.setRadius(getBorderRadius());
     bottom_left_cir.setPosition(getX(), getY() + getHeight() - 2 * getBorderRadius());
     bottom_left_cir.setFillColor(is_selected_ ? selected_color_ : getBackgroundColor());
