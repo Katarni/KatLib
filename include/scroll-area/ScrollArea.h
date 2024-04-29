@@ -10,14 +10,12 @@
 namespace kat {
   class ScrollArea : public Div {
    public:
-    ScrollArea() : Div(), elms_(std::vector<Label*>(0)) {}
+    ScrollArea() : Div(), elms_(std::vector<Button*>(0)) {}
     ScrollArea(float x, float y,
                float width, float height,
-               sf::RenderWindow* parent) : Div(x, y, width, height, parent), elms_(std::vector<Label*>(0)) {}
+               sf::RenderWindow* parent) : Div(x, y, width, height, parent), elms_(std::vector<Button*>(0)) {}
     ~ScrollArea() {
-      for (auto & elm : elms_) {
-        delete elm;
-      }
+      clear();
     }
 
     void render() override {
@@ -45,7 +43,17 @@ namespace kat {
       }
     }
 
+    void addElm(const Button& btn) {
+      elms_.push_back(new Button(btn));
+    }
+
+    void clear() {
+      for (auto& i : elms_) {
+        delete i;
+      }
+    }
+
    private:
-    std::vector<Label*> elms_;
+    std::vector<Button*> elms_;
   };
 }
