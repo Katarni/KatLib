@@ -54,6 +54,10 @@ namespace kat {
       elms_.resize(0);
     }
 
+    std::vector<Button*>& getElms() {
+      return elms_;
+    }
+
    private:
     std::vector<Button*> elms_;
   };
