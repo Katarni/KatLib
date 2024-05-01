@@ -134,7 +134,7 @@ std::pair<float, float> normalizeSize(const std::string& data, const std::vector
 
 bool isNumber(const std::string& str) {
   for (char c : str) {
-    if (c < '0' || '9' < c) return false;
+    if ((c < '0' || '9' < c) && c != '-') return false;
   }
   return true;
 }

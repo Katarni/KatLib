@@ -82,6 +82,8 @@ namespace kat {
 
     void setData(const std::string& data) override;
 
+    void setSelected(bool selected);
+
    private:
     int cursor_pos_;
     bool selected_ = false;
@@ -139,5 +141,9 @@ namespace kat {
     Label::setData(data);
     L_ = 0;
     R_ = std::min((int)data.size(), max_text_sz_);
+  }
+
+  void TextInput::setSelected(bool selected) {
+    selected_ = selected;
   }
 }
