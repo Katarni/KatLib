@@ -235,32 +235,32 @@ namespace kat {
 
     if (x >= x_ + border_radius_ &&
         y >= y_ &&
-        x <= x_ + width_*part - 2*border_radius_ &&
+        x <= x_ + part*width_ - 2*border_radius_ &&
         y <= y_ + height_) {
       return true;
     }
 
     if ((x - x_ - border_radius_)*(x - x_ - border_radius_) +
         (y - y_ - border_radius_)*(y - y_ - border_radius_) <= border_radius_*border_radius_ &&
-        x <= width_*part) {
+        x <= x_ + width_*part) {
       return true;
     }
 
     if ((x - x_ - width_ + border_radius_)*(x - x_ - width_ + border_radius_) +
         (y - y_ - border_radius_)*(y - y_ - border_radius_) <= border_radius_*border_radius_ &&
-        x <= width_*part) {
+        x <= x_ + width_*part) {
       return true;
     }
 
     if ((x - x_ - border_radius_)*(x - x_ - border_radius_) +
         (y - y_ + border_radius_ - height_)*(y - y_ + border_radius_ - height_) <= border_radius_*border_radius_ &&
-        x <= width_*part) {
+        x <= x_ + width_*part) {
       return true;
     }
 
     if ((x - x_ - width_ + border_radius_)*(x - x_ - width_ + border_radius_) +
         (y - y_ + border_radius_ - height_)*(y - y_ + border_radius_ - height_) <= border_radius_*border_radius_ &&
-        x <= width_*part) {
+        x <= x_ + width_*part) {
       return true;
     }
 
