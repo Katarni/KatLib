@@ -11,6 +11,7 @@ namespace kat {
   class VerCheckBox : public VerScrollArea {
    public:
     VerCheckBox() : VerScrollArea(), accept_btn_(Button()) {}
+    VerCheckBox(sf::RenderWindow* parent) : VerScrollArea(parent), accept_btn_(Button()) {}
     VerCheckBox(float x, float y,
              float width, float height,
              sf::RenderWindow* parent,

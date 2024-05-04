@@ -11,7 +11,7 @@ namespace kat {
   class SelectedItem : public Button {
    public:
     SelectedItem() : Button(), is_selected_(false), selected_color_(sf::Color::Black) {}
-
+    SelectedItem(sf::RenderWindow *parent) : Button(parent), is_selected_(false), selected_color_(sf::Color::Black) {}
     SelectedItem(float x, float y,
                  float width, float height,
                  const std::string &data, const sf::Font &font,

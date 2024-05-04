@@ -11,6 +11,7 @@ namespace kat {
   class ErrorMessage : public Button {
    public:
     ErrorMessage(): Button(), close_btn_(Button()) {}
+    ErrorMessage(sf::RenderWindow *parent): Button(parent), close_btn_(Button()) {}
     ErrorMessage(float x, float y,
                  float width, float height,
                  const std::string &data, const sf::Font &font,

@@ -10,6 +10,7 @@ namespace kat {
   class Button : public Label {
    public:
     Button() : Label() {}
+    Button(sf::RenderWindow* parent) : Label(parent) {}
     Button(float x, float y,
            float width, float height,
            const std::string &data, const sf::Font &font,

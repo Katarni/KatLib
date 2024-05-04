@@ -12,6 +12,7 @@ namespace kat {
   class ScrollTextInputs : public VerCheckBox {
    public:
     ScrollTextInputs() : VerCheckBox() {}
+    ScrollTextInputs(sf::RenderWindow* parent) : VerCheckBox(parent) {}
     ScrollTextInputs(float x, float y,
              float width, float height,
              sf::RenderWindow* parent,

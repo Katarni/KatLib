@@ -11,6 +11,7 @@ namespace kat {
   class ScrollAreaElm : public Button {
    public:
     ScrollAreaElm() : Button(), selected_(false) {}
+    ScrollAreaElm(sf::RenderWindow *parent) : Button(parent), selected_(false) {}
     ScrollAreaElm(float x, float y,
            float width, float height,
            const std::string &data, const sf::Font &font,

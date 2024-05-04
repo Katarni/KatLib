@@ -13,6 +13,10 @@ namespace kat {
               paddings_(std::vector<float>(4, 0)),
               font_size_(30) {}
 
+    Label(sf::RenderWindow *parent) : Div(parent), data_(""), color_(sf::Color::Black),
+              paddings_(std::vector<float>(4, 0)),
+              font_size_(30) {}
+
     Label(float x, float y,
           float width, float height,
           const std::string &data, const sf::Font &font,

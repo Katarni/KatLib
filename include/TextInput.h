@@ -11,6 +11,7 @@ namespace kat {
   class TextInput : public Button {
    public:
     TextInput() : Button() {}
+    TextInput(sf::RenderWindow *parent) : Button(parent) {}
     TextInput(float x, float y,
               float width, float height,
               const sf::Font &font, sf::RenderWindow *parent) : Button(x, y, width, height, "", font, parent),

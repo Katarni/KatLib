@@ -11,6 +11,7 @@ namespace kat {
   class DialogWin : public Button {
    public:
     DialogWin(): Button(), ac_btn_(Button()), no_btn_(Button()) {}
+    DialogWin(sf::RenderWindow *parent): Button(parent), ac_btn_(Button()), no_btn_(Button()) {}
     DialogWin(float x, float y,
                  float width, float height,
                  const std::string &data, const sf::Font &font,

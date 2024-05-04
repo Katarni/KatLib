@@ -15,6 +15,11 @@ namespace kat {
            parent_(nullptr), border_radius_(0), background_color_(sf::Color::White),
            need_render_(true) {}
 
+    Div(sf::RenderWindow* window): x_(0), y_(0),
+           width_(0), height_(0),
+           parent_(window), border_radius_(0), background_color_(sf::Color::White),
+           need_render_(true) {}
+
     Div(float x, float y,
         float width, float height,
         sf::RenderWindow* parent): x_(x), y_(y),

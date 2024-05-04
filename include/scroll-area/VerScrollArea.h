@@ -16,6 +16,11 @@ namespace kat {
                       paddings_(std::vector<float>(4, 0)), elms_divider_(0),
                       elm_border_radius_(0), elm_background_(sf::Color::White),
                       selected_background_(sf::Color::White) {}
+    VerScrollArea(sf::RenderWindow* parent) : Div(parent), elms_(std::vector<ScrollAreaElm>(0)),
+                      elm_width_(0), elm_height_(0),
+                      paddings_(std::vector<float>(4, 0)), elms_divider_(0),
+                      elm_border_radius_(0), elm_background_(sf::Color::White),
+                      selected_background_(sf::Color::White) {}
     VerScrollArea(float x, float y,
                   float width, float height,
                   sf::RenderWindow* parent,
