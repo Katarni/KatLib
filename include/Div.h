@@ -44,6 +44,8 @@ namespace kat {
     void setX(float x);
     float getY() const;
     void setY(float y);
+    float getCenterX() const;
+    float getCenterY() const;
 
     float getWidth() const;
     virtual void setWidth(float width);
@@ -287,5 +289,13 @@ namespace kat {
 
   void Div::setBorderColor(const sf::Color &borderColor) {
     border_color_ = borderColor;
+  }
+
+  float Div::getCenterY() const {
+    return x_ + width_/2;
+  }
+
+  float Div::getCenterX() const {
+    return y_ + height_/2;
   }
 }
