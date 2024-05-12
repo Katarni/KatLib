@@ -34,7 +34,7 @@ namespace kat {
 
     virtual void render();
 
-    void setBackgroundColor(sf::Color color) {
+    virtual void setBackgroundColor(sf::Color color) {
       background_color_ = color;
     }
 
