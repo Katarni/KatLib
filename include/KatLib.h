@@ -19,3 +19,5 @@
 #include "scroll-area/ScrollTextInputs.h"
 #include "scroll-area/ScrollArea.h"
 #include "Line.h"
+#include "Image.h"
+#include "ProgressBar.h"

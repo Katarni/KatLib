@@ -23,6 +23,7 @@ set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/SelectedItem.h")
 set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/KatLib.h")
 set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/scroll-area/ScrollArea.h")
 set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/Line.h")
+set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/Image.h")
 
 
 install(TARGETS KatLib

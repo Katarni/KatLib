@@ -13,12 +13,12 @@ namespace kat {
     Div(): x_(0), y_(0),
            width_(0), height_(0),
            parent_(nullptr), border_radius_(0), background_color_(sf::Color::White),
-           need_render_(true) {}
+           need_render_(true), border_bold_(0) {}
 
-    Div(sf::RenderWindow* window): x_(0), y_(0),
+    explicit Div(sf::RenderWindow* window): x_(0), y_(0),
            width_(0), height_(0),
            parent_(window), border_radius_(0), background_color_(sf::Color::White),
-           need_render_(true) {}
+           need_render_(true), border_bold_(0) {}
 
     Div(float x, float y,
         float width, float height,
@@ -38,27 +38,37 @@ namespace kat {
       background_color_ = color;
     }
 
+    [[nodiscard]]
     const sf::Color &getBackgroundColor() const;
 
+    [[nodiscard]]
     float getX() const;
     void setX(float x);
+    [[nodiscard]]
     float getY() const;
     void setY(float y);
+    [[nodiscard]]
     float getCenterX() const;
+    [[nodiscard]]
     float getCenterY() const;
 
+    [[nodiscard]]
     float getWidth() const;
     virtual void setWidth(float width);
+    [[nodiscard]]
     float getHeight() const;
     void setHeight(float height);
 
+    [[nodiscard]]
     sf::RenderWindow *getParent() const;
     void setParent(sf::RenderWindow *parent);
 
+    [[nodiscard]]
     const float &getBorderRadius() const;
     void setBorderRadius(float border_radius);
 
-    inline bool isHovered(float x, float y) const;
+    [[nodiscard]]
+    inline virtual bool isHovered(float x, float y) const;
 
     virtual void moveY(float d) {
       y_ += d;
@@ -68,6 +78,7 @@ namespace kat {
       x_ += d;
     }
 
+    [[nodiscard]]
     bool needRender() const {
       return need_render_;
     }
@@ -80,12 +91,15 @@ namespace kat {
       need_render_ = !need_render_;
     }
 
-    inline bool isHoverHorizontalPart(float part, float x, float y) const;
+    [[nodiscard]]
+    inline virtual bool isHoverHorizontalPart(float part, float x, float y) const;
 
+    [[nodiscard]]
     float getBorderBold() const;
 
     void setBorderBold(float borderBold);
 
+    [[nodiscard]]
     const sf::Color &getBorderColor() const;
 
     void setBorderColor(const sf::Color &borderColor);
