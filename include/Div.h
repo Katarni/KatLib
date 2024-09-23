@@ -57,7 +57,7 @@ namespace kat {
     virtual void setWidth(float width);
     [[nodiscard]]
     float getHeight() const;
-    void setHeight(float height);
+    virtual void setHeight(float height);
 
     [[nodiscard]]
     sf::RenderWindow *getParent() const;
