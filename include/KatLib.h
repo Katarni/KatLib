@@ -21,3 +21,4 @@
 #include "Line.h"
 #include "Image.h"
 #include "ProgressBar.h"
+#include "Animation.h"

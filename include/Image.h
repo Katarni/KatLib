@@ -79,6 +79,22 @@ namespace kat {
             setWidth(height * static_cast<float>(image_.getSize().x) / static_cast<float>(image_.getSize().y));
         }
 
+        float getScaledWidth() const {
+            return getWidth() * scale_;
+        }
+
+        float getScaledHeight() const {
+            return getHeight() * scale_;
+        }
+
+        float getScaledCenterX() const {
+            return getX() + getWidth() * scale_ / 2;
+        }
+
+        float getScaledCenterY() const {
+            return getY() + getHeight() * scale_ / 2;
+        }
+
      private:
         bool scaled_ = false;
         float scale_;

@@ -305,11 +305,11 @@ namespace kat {
     border_color_ = borderColor;
   }
 
-  float Div::getCenterY() const {
+  float Div::getCenterX() const {
     return x_ + width_/2;
   }
 
-  float Div::getCenterX() const {
+  float Div::getCenterY() const {
     return y_ + height_/2;
   }
 }

@@ -8,6 +8,7 @@ target_include_directories(KatLib INTERFACE
         $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>)
 
+set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/KatLib.h")
 set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/Label.h")
 set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/Div.h")
 set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/Button.h")
@@ -20,10 +21,11 @@ set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/DialogWin.h")
 set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/scroll-area/VerCheckBox.h")
 set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/scroll-area/ScrollTextInputs.h")
 set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/SelectedItem.h")
-set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/KatLib.h")
 set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/scroll-area/ScrollArea.h")
 set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/Line.h")
 set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/Image.h")
+set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/ProgressBar.h")
+set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/Animation.h")
 
 
 install(TARGETS KatLib
