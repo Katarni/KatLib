@@ -121,6 +121,10 @@ char getCharFromEvent(const sf::Event& e, bool is_shift) {
     return is_shift ? '~' : '`';
   }
 
+  if (e.key.code == sf::Keyboard::Space) {
+      return ' ';
+  }
+
   return -1;
 }
 

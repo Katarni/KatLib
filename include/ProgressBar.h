@@ -50,7 +50,7 @@ namespace kat {
             sf::CircleShape top_left_cir;
             sf::CircleShape bottom_left_cir;
 
-            float p_width = getWidth() * progress_ - getBorderBold();
+            float p_width = getWidth() * progress_;
 
             hor_rect.setPosition(getX(), getY() + getBorderRadius());
             hor_rect.setSize({p_width, getHeight() - 2*getBorderRadius()});
