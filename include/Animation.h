@@ -29,8 +29,22 @@ namespace kat {
             return ret;
         }
 
+        bool tick() {
+            ++iter_;
+            if (iter_ % duration_ == 0) {
+                iter_ = 0;
+                nextFrame();
+                return true;
+            }
+        }
+
+        void setDuration(int duration) {
+            duration_ = duration;
+        }
+
      private:
-        int count_, cur_frame_;
+        int iter_ = 0;
+        int count_, cur_frame_, duration_ = 1;
         std::string dir_, prefix_, postfix_;
     };
 
