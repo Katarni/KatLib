@@ -36,6 +36,7 @@ namespace kat {
                 nextFrame();
                 return true;
             }
+            return false;
         }
 
         void setDuration(int duration) {

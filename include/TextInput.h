@@ -94,11 +94,16 @@ namespace kat {
 
         void setSelected(bool selected);
 
+        void setPlaceHolder(const std::string& placeholder) {
+            placeholder_ = placeholder;
+        }
+
      private:
         int cursor_pos_;
         bool selected_ = false;
         int max_text_sz_;
         int L_, R_;
+        std::string placeholder_;
     };
 
     bool TextInput::isPressed(float x, float y) {
@@ -112,6 +117,10 @@ namespace kat {
     void TextInput::render() {
         if (!needRender()) return;
         std::string str = std::string(getData().begin() + L_, getData().begin() + R_);
+        if (str.empty()) {
+            str = std::string(placeholder_.begin(),
+                              placeholder_.begin() + std::min<int>(max_text_sz_, placeholder_.size()));
+        }
 
         auto text_params = getStringParams(str);
         float text_x = (getWidth() - (float) text_params.first * (float) getFontSize() / 1.6f) / 2 + getX();
