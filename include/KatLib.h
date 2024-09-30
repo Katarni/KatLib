@@ -13,7 +13,6 @@
 #include "Label.h"
 #include "SelectedItem.h"
 #include "TextInput.h"
-#include "scroll-area/VerCheckBox.h"
 #include "scroll-area/VerScrollArea.h"
 #include "scroll-area/ScrollAreaElm.h"
 #include "scroll-area/ScrollTextInputs.h"

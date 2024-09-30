@@ -18,7 +18,6 @@ set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/scroll-area/VerSc
 set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/scroll-area/ScrollAreaElm.h")
 set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/ErrorMessage.h")
 set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/DialogWin.h")
-set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/scroll-area/VerCheckBox.h")
 set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/scroll-area/ScrollTextInputs.h")
 set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/SelectedItem.h")
 set_target_properties(KatLib PROPERTIES PUBLIC_HEADER "include/scroll-area/ScrollArea.h")
