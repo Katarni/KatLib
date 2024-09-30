@@ -34,7 +34,7 @@ install(TARGETS KatLib
 
 include(CMakePackageConfigHelpers)
 
-add_subdirectory(SFML-2.6.1)
+add_subdirectory(sfml)
 target_link_libraries(KatLib INTERFACE sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
 
 configure_package_config_file(
