@@ -32,7 +32,7 @@ namespace kat {
             max_text_sz_ = int((getWidth() - getPaddings()[0] - getPaddings()[2]) / ((float) getFontSize() / 1.6f));
         }
 
-        void addCharacter(char c) {
+        virtual void addCharacter(char c) {
             auto data = getData();
             data.insert(data.begin() + cursor_pos_, c);
             setData(data);
@@ -44,7 +44,7 @@ namespace kat {
             }
         }
 
-        void delCharacter() {
+        virtual void delCharacter() {
             auto data = getData();
             if (data.empty()) return;
             if (cursor_pos_ == 0) return;
@@ -61,7 +61,7 @@ namespace kat {
             setData(data);
         }
 
-        void moveCursorLeft() {
+        virtual void moveCursorLeft() {
             if (cursor_pos_ != 0) {
                 --cursor_pos_;
             }
@@ -71,7 +71,7 @@ namespace kat {
             }
         }
 
-        void moveCursorRight() {
+        virtual void moveCursorRight() {
             if (cursor_pos_ != getData().size()) {
                 ++cursor_pos_;
             }
@@ -86,7 +86,7 @@ namespace kat {
 
         void render() override;
 
-        bool isSelected() const;
+        virtual bool isSelected() const;
 
         void setWidth(float width) override;
 

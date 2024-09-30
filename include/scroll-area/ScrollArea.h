@@ -12,13 +12,13 @@ namespace kat {
      public:
         ScrollArea() : Div(), elms_(std::vector<Button *>(0)) {}
 
-        ScrollArea(sf::RenderWindow *parent) : Div(parent), elms_(std::vector<Button *>(0)) {}
+        explicit ScrollArea(sf::RenderWindow *parent) : Div(parent), elms_(std::vector<Button *>(0)) {}
 
         ScrollArea(float x, float y,
                    float width, float height,
                    sf::RenderWindow *parent) : Div(x, y, width, height, parent), elms_(std::vector<Button *>(0)) {}
 
-        ~ScrollArea() {
+        virtual ~ScrollArea() {
             clear();
         }
 
