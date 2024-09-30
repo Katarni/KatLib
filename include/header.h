@@ -121,6 +121,8 @@ namespace kat {
             return is_shift ? '?' : '/';
         } else if (e.key.code == sf::Keyboard::Grave) {
             return is_shift ? '~' : '`';
+        } else if (e.key.code == sf::Keyboard::Semicolon) {
+            return is_shift ? ':' : ';';
         }
 
         if (e.key.code == sf::Keyboard::Space) {
