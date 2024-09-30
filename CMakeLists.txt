@@ -34,7 +34,9 @@ install(TARGETS KatLib
 
 include(CMakePackageConfigHelpers)
 
-add_subdirectory(sfml)
+include_directories(/usr/local/include)
+find_package(SFML 2.6 COMPONENTS system window graphics network audio REQUIRED)
+include_directories(${SFML_INCLUDE_DIRS})
 target_link_libraries(KatLib INTERFACE sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
 
 configure_package_config_file(
