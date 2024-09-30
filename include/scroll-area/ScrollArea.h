@@ -8,58 +8,111 @@
 
 
 namespace kat {
-  class ScrollArea : public Div {
-   public:
-    ScrollArea() : Div(), elms_(std::vector<Button*>(0)) {}
-    ScrollArea(sf::RenderWindow* parent) : Div(parent), elms_(std::vector<Button*>(0)) {}
-    ScrollArea(float x, float y,
-               float width, float height,
-               sf::RenderWindow* parent) : Div(x, y, width, height, parent), elms_(std::vector<Button*>(0)) {}
-    ~ScrollArea() {
-      clear();
-    }
+    class ScrollArea : public Div {
+     public:
+        ScrollArea() : Div(), elms_(std::vector<Button *>(0)) {}
 
-    void render() override {
-      if (!needRender()) return;
+        ScrollArea(sf::RenderWindow *parent) : Div(parent), elms_(std::vector<Button *>(0)) {}
 
-      Div::render();
-      for (auto& elm : elms_) {
-        if (elm->getX() >= getX() && elm->getY() >= getY() &&
-            elm->getX() + elm->getWidth() <= getX() + getWidth() &&
-            elm->getY() + elm->getHeight() <= getY() + getHeight()) {
-          elm->render();
+        ScrollArea(float x, float y,
+                   float width, float height,
+                   sf::RenderWindow *parent) : Div(x, y, width, height, parent), elms_(std::vector<Button *>(0)) {}
+
+        ~ScrollArea() {
+            clear();
         }
-      }
-    }
 
-    void moveX(float d) override {
-      for (auto& elm : elms_) {
-        elm->moveX(d);
-      }
-    }
+        void render() override {
+            if (!needRender()) return;
 
-    void moveY(float d) override {
-      for (auto& elm : elms_) {
-        elm->moveY(d);
-      }
-    }
+            Div::render();
+            for (auto &elm: elms_) {
+                if (elm->getX() >= getX() && elm->getY() >= getY() &&
+                    elm->getX() + elm->getWidth() <= getX() + getWidth() &&
+                    elm->getY() + elm->getHeight() <= getY() + getHeight()) {
+                    elm->render();
+                }
+            }
+        }
 
-    void addElm(const Button& btn) {
-      elms_.push_back(new Button(btn));
-    }
+        void moveX(float d) override {
+            if (d == 0) return;
 
-    void clear() {
-      for (auto& i : elms_) {
-        delete i;
-      }
-      elms_.resize(0);
-    }
+            if (d > 0) {
+                float min_x = 1e9;
+                for (auto &elm: elms_) {
+                    min_x = std::min(min_x, elm->getX());
+                }
+                if (min_x > getX()) return;
+            } else {
+                float max_x = -1e9;
+                for (auto &elm: elms_) {
+                    max_x = std::max(max_x, elm->getX() + elm->getWidth());
+                }
+                if (max_x < getX() + getWidth()) return;
+            }
 
-    std::vector<Button*>& getElms() {
-      return elms_;
-    }
+            for (auto &elm: elms_) {
+                elm->moveX(d);
+            }
+        }
 
-   private:
-    std::vector<Button*> elms_;
-  };
+        void moveY(float d) override {
+            if (d == 0) return;
+
+            if (d > 0) {
+                float min_y = 1e9;
+                for (auto &elm: elms_) {
+                    min_y = std::min(min_y, elm->getY());
+                }
+                if (min_y > getY()) return;
+            } else {
+                float max_y = -1e9;
+                for (auto &elm: elms_) {
+                    max_y = std::max(max_y, elm->getY() + elm->getHeight());
+                }
+                if (max_y < getY() + getHeight()) return;
+            }
+
+            for (auto &elm: elms_) {
+                elm->moveY(d);
+            }
+        }
+
+        virtual void addElm(Button* btn) {
+            elms_.push_back(btn);
+        }
+
+        virtual void removeElm(int idx) {
+            if (idx >= elms_.size() || idx < 0) {
+                throw std::runtime_error("ScrollArea out of range");
+            }
+            delete elms_[idx];
+            elms_.erase(elms_.begin() + idx);
+        }
+
+        void clear() {
+            for (auto &i: elms_) {
+                delete i;
+            }
+            elms_.resize(0);
+        }
+
+        std::vector<Button *> &getElms() {
+            return elms_;
+        }
+
+        virtual void isPressed(float x, float y) {
+            for (auto &elm: elms_) {
+                if (elm->getX() >= getX() && elm->getY() >= getY() &&
+                    elm->getX() + elm->getWidth() <= getX() + getWidth() &&
+                    elm->getY() + elm->getHeight() <= getY() + getHeight()) {
+                    elm->isPressed(x, y);
+                }
+            }
+        }
+
+     private:
+        std::vector<Button *> elms_;
+    };
 }
