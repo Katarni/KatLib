@@ -10,21 +10,25 @@
 namespace kat {
     class TextInput : public Button {
      public:
-        TextInput() : Button() {}
+        TextInput() : Button(), cursor_pos_(0), selected_(false), L_(0), R_(0),
+                      placeholder_color_(sf::Color(119, 119, 119)) {}
 
-        TextInput(sf::RenderWindow *parent) : Button(parent) {}
+        TextInput(sf::RenderWindow *parent) : Button(parent), cursor_pos_(0), selected_(false), L_(0), R_(0),
+                                              placeholder_color_(sf::Color(119, 119, 119)) {}
 
         TextInput(float x, float y,
                   float width, float height,
                   const sf::Font &font, sf::RenderWindow *parent) : Button(x, y, width, height, "", font, parent),
-                                                                    cursor_pos_(0), selected_(false), L_(0), R_(0) {
+                                                                    cursor_pos_(0), selected_(false), L_(0), R_(0),
+                                                                    placeholder_color_(sf::Color(119, 119, 119)) {
             max_text_sz_ = int((getWidth() - getPaddings()[0] - getPaddings()[2]) / ((float) getFontSize() / 1.6f));
         }
 
         TextInput(float x, float y,
                   float width, float height,
                   const std::string &font, sf::RenderWindow *parent) : Button(x, y, width, height, "", font, parent),
-                                                                    cursor_pos_(0), selected_(false), L_(0), R_(0) {
+                                                                        cursor_pos_(0), selected_(false), L_(0), R_(0),
+                                                                       placeholder_color_(sf::Color(119, 119, 119)) {
             max_text_sz_ = int((getWidth() - getPaddings()[0] - getPaddings()[2]) / ((float) getFontSize() / 1.6f));
         }
 
@@ -98,12 +102,21 @@ namespace kat {
             placeholder_ = placeholder;
         }
 
+        const sf::Color &getPlaceholderColor() const {
+            return placeholder_color_;
+        }
+
+        void setPlaceholderColor(const sf::Color &placeholderColor) {
+            placeholder_color_ = placeholderColor;
+        }
+
      private:
         int cursor_pos_;
         bool selected_ = false;
         int max_text_sz_;
         int L_, R_;
         std::string placeholder_;
+        sf::Color placeholder_color_;
     };
 
     bool TextInput::isPressed(float x, float y) {
@@ -130,7 +143,7 @@ namespace kat {
 
         sf::Text text;
         text.setFont(getFont());
-        text.setFillColor(getColor());
+        text.setFillColor(getData().empty() ? placeholder_color_ : getColor());
         text.setCharacterSize(getFontSize());
         text.setString(str);
         text.setPosition(text_x, text_y);
