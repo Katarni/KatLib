@@ -9,6 +9,14 @@
 
 namespace kat {
     class VerScrollArea : public ScrollArea {
+     public:
+        VerScrollArea() : ScrollArea() {}
+
+        explicit VerScrollArea(sf::RenderWindow *parent) : ScrollArea(parent) {}
+
+        VerScrollArea(float x, float y,
+                   float width, float height,
+                   sf::RenderWindow *parent) : ScrollArea(x, y, width, height, parent) {}
      private:
         using ScrollArea::moveX;
     };
