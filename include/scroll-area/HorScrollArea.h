@@ -8,8 +8,8 @@
 
 
 namespace kat {
-    class VerScrollArea : public ScrollArea {
+    class HorScrollArea : public ScrollArea {
      private:
-        using ScrollArea::moveX;
+        using ScrollArea::moveY;
     };
 }

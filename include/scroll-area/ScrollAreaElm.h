@@ -8,31 +8,33 @@
 
 
 namespace kat {
-  class ScrollAreaElm : public Button {
-   public:
-    ScrollAreaElm() : Button(), selected_(false) {}
-    ScrollAreaElm(sf::RenderWindow *parent) : Button(parent), selected_(false) {}
-    ScrollAreaElm(float x, float y,
-           float width, float height,
-           const std::string &data, const sf::Font &font,
-           sf::RenderWindow *parent) : Button(x, y, width, height, data, font, parent), selected_(false) {}
+    class ScrollAreaElm : public Button {
+     public:
+        ScrollAreaElm() : Button(), selected_(false) {}
 
-    bool isSelected() const {
-      return selected_;
-    }
+        ScrollAreaElm(sf::RenderWindow *parent) : Button(parent), selected_(false) {}
 
-    void setSelected(bool selected) {
-      selected_ = selected;
-    }
+        ScrollAreaElm(float x, float y,
+                      float width, float height,
+                      const std::string &data, const sf::Font &font,
+                      sf::RenderWindow *parent) : Button(x, y, width, height, data, font, parent), selected_(false) {}
 
-    bool isPressed(float x, float y) override {
-      if (Button::isPressed(x, y)) {
-        selected_ = !selected_;
-      }
-      return selected_;
-    }
+        bool isSelected() const {
+            return selected_;
+        }
 
-   private:
-    bool selected_;
-  };
+        void setSelected(bool selected) {
+            selected_ = selected;
+        }
+
+        bool isPressed(float x, float y) override {
+            if (Button::isPressed(x, y)) {
+                selected_ = !selected_;
+            }
+            return selected_;
+        }
+
+     private:
+        bool selected_;
+    };
 }
