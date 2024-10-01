@@ -35,48 +35,50 @@ namespace kat {
             }
         }
 
-        void moveX(float d) override {
-            if (d == 0) return;
+        bool moveAllX(float d) {
+            if (d == 0) return true;
 
             if (d > 0) {
                 float min_x = 1e9;
                 for (auto &elm: elms_) {
                     min_x = std::min(min_x, elm->getX());
                 }
-                if (min_x > getX()) return;
+                if (min_x > getX()) return false;
             } else {
                 float max_x = -1e9;
                 for (auto &elm: elms_) {
                     max_x = std::max(max_x, elm->getX() + elm->getWidth());
                 }
-                if (max_x < getX() + getWidth()) return;
+                if (max_x < getX() + getWidth()) return false;
             }
 
             for (auto &elm: elms_) {
                 elm->moveX(d);
             }
+            return true;
         }
 
-        void moveY(float d) override {
-            if (d == 0) return;
+        bool moveAllY(float d) {
+            if (d == 0) return true;
 
             if (d > 0) {
                 float min_y = 1e9;
                 for (auto &elm: elms_) {
                     min_y = std::min(min_y, elm->getY());
                 }
-                if (min_y > getY()) return;
+                if (min_y > getY()) return false;
             } else {
                 float max_y = -1e9;
                 for (auto &elm: elms_) {
                     max_y = std::max(max_y, elm->getY() + elm->getHeight());
                 }
-                if (max_y < getY() + getHeight()) return;
+                if (max_y < getY() + getHeight()) return false;
             }
 
             for (auto &elm: elms_) {
                 elm->moveY(d);
             }
+            return true;
         }
 
         virtual void addElm(Button* btn) {
