@@ -10,13 +10,13 @@
 namespace kat {
     class ScrollArea : public Div {
      public:
-        ScrollArea() : Div(), elms_(std::vector<Button *>(0)) {}
+        ScrollArea() : Div(), elms_(std::vector<Div *>(0)) {}
 
-        explicit ScrollArea(sf::RenderWindow *parent) : Div(parent), elms_(std::vector<Button *>(0)) {}
+        explicit ScrollArea(sf::RenderWindow *parent) : Div(parent), elms_(std::vector<Div *>(0)) {}
 
         ScrollArea(float x, float y,
                    float width, float height,
-                   sf::RenderWindow *parent) : Div(x, y, width, height, parent), elms_(std::vector<Button *>(0)) {}
+                   sf::RenderWindow *parent) : Div(x, y, width, height, parent), elms_(std::vector<Div *>(0)) {}
 
         virtual ~ScrollArea() {
             clear();
@@ -100,7 +100,7 @@ namespace kat {
             elms_.resize(0);
         }
 
-        std::vector<Button *> &getElms() {
+        std::vector<Div *> &getElms() {
             return elms_;
         }
 
@@ -109,12 +109,15 @@ namespace kat {
                 if (elm->getX() >= getX() && elm->getY() >= getY() &&
                     elm->getX() + elm->getWidth() <= getX() + getWidth() &&
                     elm->getY() + elm->getHeight() <= getY() + getHeight()) {
-                    elm->isPressed(x, y);
+                    auto btn = dynamic_cast<Button*>(elm);
+                    if (btn != nullptr) {
+                        btn->isPressed(x, y);
+                    }
                 }
             }
         }
 
      private:
-        std::vector<Button *> elms_;
+        std::vector<Div *> elms_;
     };
 }
