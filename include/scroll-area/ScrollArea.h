@@ -81,7 +81,7 @@ namespace kat {
             return true;
         }
 
-        virtual void addElm(Button* btn) {
+        virtual void addElm(Div* btn) {
             elms_.push_back(btn);
         }
 
