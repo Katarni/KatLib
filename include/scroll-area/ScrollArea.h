@@ -27,9 +27,10 @@ namespace kat {
 
             Div::render();
             for (auto &elm: elms_) {
-                if (elm->getX() >= getX() && elm->getY() >= getY() &&
-                    elm->getX() + elm->getWidth() <= getX() + getWidth() &&
-                    elm->getY() + elm->getHeight() <= getY() + getHeight()) {
+                if (elm->getX() + elm->getWidth() > getX() &&
+                    elm->getY() + elm->getHeight() > getY() &&
+                    elm->getX() < getX() + getWidth() &&
+                    elm->getY()  < getY() + getHeight()) {
                     elm->render();
                 }
             }
