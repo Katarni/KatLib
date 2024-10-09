@@ -2,6 +2,8 @@
 
 My small sfml library
 
+I update this lib with my practice works
+
 ## FOR WINDOWS USERS
 To use it, u need to change include sfml libs in CMakeLists.txt in lines 37-39.
 
