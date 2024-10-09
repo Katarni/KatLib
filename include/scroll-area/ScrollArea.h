@@ -30,17 +30,17 @@ namespace kat {
             Div::render();
             for (auto &elm: elms_) {
                 if (crop_borders_) {
-                    if (elm->getX() > getX() &&
-                        elm->getY() > getY() &&
-                        elm->getX() + elm->getWidth() < getX() + getWidth() &&
-                        elm->getY() + elm->getHeight()  < getY() + getHeight()) {
+                    if (elm->getX() >= getX() &&
+                        elm->getY() >= getY() &&
+                        elm->getX() + elm->getWidth() <= getX() + getWidth() &&
+                        elm->getY() + elm->getHeight()  <= getY() + getHeight()) {
                         elm->render();
                     }
                 } else {
-                    if (elm->getX() + elm->getWidth() > getX() &&
-                        elm->getY() + elm->getHeight() > getY() &&
-                        elm->getX() < getX() + getWidth() &&
-                        elm->getY() < getY() + getHeight()) {
+                    if (elm->getX() + elm->getWidth() >= getX() &&
+                        elm->getY() + elm->getHeight() >= getY() &&
+                        elm->getX() <= getX() + getWidth() &&
+                        elm->getY() <= getY() + getHeight()) {
                         elm->render();
                     }
                 }
@@ -119,20 +119,20 @@ namespace kat {
         virtual void isPressed(float x, float y) {
             for (auto &elm: elms_) {
                 if (crop_borders_) {
-                    if (elm->getX() > getX() &&
-                        elm->getY() > getY() &&
-                        elm->getX() + elm->getWidth() < getX() + getWidth() &&
-                        elm->getY() + elm->getHeight()  < getY() + getHeight()) {
+                    if (elm->getX() >= getX() &&
+                        elm->getY() >= getY() &&
+                        elm->getX() + elm->getWidth() <= getX() + getWidth() &&
+                        elm->getY() + elm->getHeight()  <= getY() + getHeight()) {
                         auto btn = dynamic_cast<Button*>(elm);
                         if (btn != nullptr) {
                             btn->isPressed(x, y);
                         }
                     }
                 } else {
-                    if (elm->getX() + elm->getWidth() > getX() &&
-                        elm->getY() + elm->getHeight() > getY() &&
-                        elm->getX() < getX() + getWidth() &&
-                        elm->getY() < getY() + getHeight()) {
+                    if (elm->getX() + elm->getWidth() >= getX() &&
+                        elm->getY() + elm->getHeight() >= getY() &&
+                        elm->getX() <= getX() + getWidth() &&
+                        elm->getY() <= getY() + getHeight()) {
                         auto btn = dynamic_cast<Button*>(elm);
                         if (btn != nullptr) {
                             btn->isPressed(x, y);
