@@ -18,6 +18,6 @@ namespace kat {
                    float width, float height,
                    sf::RenderWindow *parent) : ScrollArea(x, y, width, height, parent) {}
      private:
-        using ScrollArea::moveX;
+        using ScrollArea::moveAllX;
     };
 }

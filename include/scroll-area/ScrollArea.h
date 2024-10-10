@@ -10,13 +10,15 @@
 namespace kat {
     class ScrollArea : public Div {
      public:
-        ScrollArea() : Div(), elms_(std::vector<Button *>(0)) {}
+        ScrollArea() : Div(), elms_(std::vector<Div *>(0)), crop_borders_(false) {}
 
-        explicit ScrollArea(sf::RenderWindow *parent) : Div(parent), elms_(std::vector<Button *>(0)) {}
+        explicit ScrollArea(sf::RenderWindow *parent) : Div(parent),
+                                                        elms_(std::vector<Div *>(0)), crop_borders_(false) {}
 
         ScrollArea(float x, float y,
                    float width, float height,
-                   sf::RenderWindow *parent) : Div(x, y, width, height, parent), elms_(std::vector<Button *>(0)) {}
+                   sf::RenderWindow *parent) : Div(x, y, width, height, parent),
+                                                elms_(std::vector<Div *>(0)), crop_borders_(false) {}
 
         virtual ~ScrollArea() {
             clear();
@@ -27,59 +29,71 @@ namespace kat {
 
             Div::render();
             for (auto &elm: elms_) {
-                if (elm->getX() >= getX() && elm->getY() >= getY() &&
-                    elm->getX() + elm->getWidth() <= getX() + getWidth() &&
-                    elm->getY() + elm->getHeight() <= getY() + getHeight()) {
-                    elm->render();
+                if (crop_borders_) {
+                    if (elm->getX() >= getX() &&
+                        elm->getY() >= getY() &&
+                        elm->getX() + elm->getWidth() <= getX() + getWidth() &&
+                        elm->getY() + elm->getHeight()  <= getY() + getHeight()) {
+                        elm->render();
+                    }
+                } else {
+                    if (elm->getX() + elm->getWidth() >= getX() &&
+                        elm->getY() + elm->getHeight() >= getY() &&
+                        elm->getX() <= getX() + getWidth() &&
+                        elm->getY() <= getY() + getHeight()) {
+                        elm->render();
+                    }
                 }
             }
         }
 
-        void moveX(float d) override {
-            if (d == 0) return;
+        bool moveAllX(float d) {
+            if (d == 0) return true;
 
             if (d > 0) {
                 float min_x = 1e9;
                 for (auto &elm: elms_) {
                     min_x = std::min(min_x, elm->getX());
                 }
-                if (min_x > getX()) return;
+                if (min_x > getX()) return false;
             } else {
                 float max_x = -1e9;
                 for (auto &elm: elms_) {
                     max_x = std::max(max_x, elm->getX() + elm->getWidth());
                 }
-                if (max_x < getX() + getWidth()) return;
+                if (max_x < getX() + getWidth()) return false;
             }
 
             for (auto &elm: elms_) {
                 elm->moveX(d);
             }
+            return true;
         }
 
-        void moveY(float d) override {
-            if (d == 0) return;
+        bool moveAllY(float d) {
+            if (d == 0) return true;
 
             if (d > 0) {
                 float min_y = 1e9;
                 for (auto &elm: elms_) {
                     min_y = std::min(min_y, elm->getY());
                 }
-                if (min_y > getY()) return;
+                if (min_y > getY()) return false;
             } else {
                 float max_y = -1e9;
                 for (auto &elm: elms_) {
                     max_y = std::max(max_y, elm->getY() + elm->getHeight());
                 }
-                if (max_y < getY() + getHeight()) return;
+                if (max_y < getY() + getHeight()) return false;
             }
 
             for (auto &elm: elms_) {
                 elm->moveY(d);
             }
+            return true;
         }
 
-        virtual void addElm(Button* btn) {
+        virtual void addElm(Div* btn) {
             elms_.push_back(btn);
         }
 
@@ -98,21 +112,46 @@ namespace kat {
             elms_.resize(0);
         }
 
-        std::vector<Button *> &getElms() {
+        std::vector<Div *> &getElms() {
             return elms_;
         }
 
         virtual void isPressed(float x, float y) {
             for (auto &elm: elms_) {
-                if (elm->getX() >= getX() && elm->getY() >= getY() &&
-                    elm->getX() + elm->getWidth() <= getX() + getWidth() &&
-                    elm->getY() + elm->getHeight() <= getY() + getHeight()) {
-                    elm->isPressed(x, y);
+                if (crop_borders_) {
+                    if (elm->getX() >= getX() &&
+                        elm->getY() >= getY() &&
+                        elm->getX() + elm->getWidth() <= getX() + getWidth() &&
+                        elm->getY() + elm->getHeight()  <= getY() + getHeight()) {
+                        auto btn = dynamic_cast<Button*>(elm);
+                        if (btn != nullptr) {
+                            btn->isPressed(x, y);
+                        }
+                    }
+                } else {
+                    if (elm->getX() + elm->getWidth() >= getX() &&
+                        elm->getY() + elm->getHeight() >= getY() &&
+                        elm->getX() <= getX() + getWidth() &&
+                        elm->getY() <= getY() + getHeight()) {
+                        auto btn = dynamic_cast<Button*>(elm);
+                        if (btn != nullptr) {
+                            btn->isPressed(x, y);
+                        }
+                    }
                 }
             }
         }
 
+        bool isCropBorders() const {
+            return crop_borders_;
+        }
+
+        void setCropBorders(bool cropBorders) {
+            crop_borders_ = cropBorders;
+        }
+
      private:
-        std::vector<Button *> elms_;
+        std::vector<Div *> elms_;
+        bool crop_borders_;
     };
 }
