@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <cmath>
 
 namespace kat {
     inline std::pair<int, int> getStringParams(const std::string& str) {
