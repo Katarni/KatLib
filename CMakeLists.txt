@@ -33,7 +33,14 @@ install(TARGETS KatLib
 
 include(CMakePackageConfigHelpers)
 
-include_directories(/usr/local/include)
+if (WIN32)
+    set(SFML_INCLUDE_DIRS "path/to/sfml/include")
+    set(SFML_DIR "path/to/sfml/lib/cmake/SFML")
+    include_directories(${SFML_INCLUDE_DIRS})
+else()
+    include_directories(/usr/local/include)
+endif (WIN32)
+
 find_package(SFML 2.6 COMPONENTS system window graphics network audio REQUIRED)
 include_directories(${SFML_INCLUDE_DIRS})
 target_link_libraries(KatLib INTERFACE sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
