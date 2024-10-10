@@ -4,18 +4,27 @@ My small sfml library
 
 I update this lib with my practice works
 
-## FOR WINDOWS USERS
-To use it, u need to change include sfml libs in CMakeLists.txt in lines 37-39.
+## Installation
 
-Set it like this
-```cmake
-set(SFML_INCLUDE_DIRS "C:/path/to/sfml/include")
-set(SFML_DIR "C:/path/to/sfml/lib/cmake/SFML")
-include_directories(${SFML_INCLUDE_DIRS})
+make 
+```
+git clone https://github.com/Katarni/KatLib.git
+```
+or
+```
+git submodule add https://github.com/Katarni/KatLib.git 
 ```
 
-## FOR UNIX SYSTEM
-U can ujust clone it and use ( if u have installed sfml)
+and include KatLib in cmake
+
+```cmake
+add_subdirectory(KatLibDirectory)
+target_link_libraries(ProfectName KatLib)
+```
+
+### For Windows users
+To use it, u need to change include sfml libs in CMakeLists.txt in lines 37-38.
+Replace "path/to/sfml" with your path
 
 ## TODO
 + docs
