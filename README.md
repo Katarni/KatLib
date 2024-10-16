@@ -4,6 +4,10 @@ My small sfml library
 
 I update this lib with my practice works
 
+## Docs
+[Dependency tree](docs/md/dependency-tree.md) of project's files
+
+
 ## Installation
 
 make 
