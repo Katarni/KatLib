@@ -16,7 +16,6 @@
 #include "scroll-area/VerScrollArea.h"
 #include "scroll-area/HorScrollArea.h"
 #include "scroll-area/ScrollArea.h"
-#include "Line.h"
 #include "Image.h"
 #include "ProgressBar.h"
 #include "Animation.h"
