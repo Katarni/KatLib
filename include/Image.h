@@ -79,25 +79,29 @@ namespace kat {
             setWidth(height * static_cast<float>(image_.getSize().x) / static_cast<float>(image_.getSize().y));
         }
 
+        [[nodiscard]]
         float getScaledWidth() const {
             return getWidth() * scale_;
         }
 
+        [[nodiscard]]
         float getScaledHeight() const {
             return getHeight() * scale_;
         }
 
+        [[nodiscard]]
         float getScaledCenterX() const {
             return getX() + getWidth() * scale_ / 2;
         }
 
+        [[nodiscard]]
         float getScaledCenterY() const {
             return getY() + getHeight() * scale_ / 2;
         }
 
      private:
         bool scaled_ = false;
-        float scale_;
+        float scale_ = 1;
 
         sf::Image image_;
 
