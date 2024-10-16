@@ -105,6 +105,15 @@ namespace kat {
             elms_.erase(elms_.begin() + idx);
         }
 
+        virtual void popBack() {
+            if (elms_.empty()) {
+                throw std::runtime_error("ScrollArea out of range");
+            }
+
+            delete elms_.back();
+            elms_.pop_back();
+        }
+
         void clear() {
             for (auto &i: elms_) {
                 delete i;
