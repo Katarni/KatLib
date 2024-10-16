@@ -34,7 +34,7 @@ namespace kat {
 
     virtual void render();
 
-    virtual void setBackgroundColor(sf::Color color) {
+    void setBackgroundColor(sf::Color color) {
       background_color_ = color;
     }
 
@@ -58,7 +58,7 @@ namespace kat {
     [[nodiscard]]
     float getHeight() const;
     virtual void setHeight(float height);
-    virtual void resize(float width, float height) {
+    void resize(float width, float height) {
         setWidth(width);
         setHeight(height);
     }
