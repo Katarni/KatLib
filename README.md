@@ -5,7 +5,8 @@ My small sfml library
 I update this lib with my practice works
 
 ## Docs
-[Dependency tree](docs/md/dependency-tree.md) of project's files
+[Dependency tree](docs/md/dependency-tree.md) of framework's files
+[Inheritance tree](docs/md/inheritance-tree.md) of framework's classes
 
 
 ## Installation
