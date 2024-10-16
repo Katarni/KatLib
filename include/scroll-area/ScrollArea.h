@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../Label.h"
+#include "../Div.h"
 
 
 namespace kat {
